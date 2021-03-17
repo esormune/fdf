@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:10:44 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/13 11:09:02 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/17 13:29:40 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define WIN_X	800
 # define WIN_Y	800
 # define WIN_HALF	400
+# define SQUARES	16
+# define SQ_SIZE	200
+# define SQ_PR		4
 # define WIN_MAX	640000
 # define WHITE		0XFFFFFF
 # define GREY		0X757575
@@ -48,6 +51,17 @@ typedef struct	s_coord
 	int			row_len;
 }				t_coord;
 
+typedef struct	s_floor
+{
+	int			colour;
+	int			change;
+	int			sleep;
+	int			inc;
+	int			black;
+	t_coord		start;
+	t_coord		end;
+}				t_floor;
+
 typedef struct	s_map
 {
 	void		*mlx_ptr;
@@ -61,10 +75,10 @@ typedef struct	s_map
 	float		zoom;
 	t_coord		**coord;
 	int			y_size;
-	int			max_x;
 	int			x_start;
 	int			y_start;
 	int			z_start;
+	int			max_width;
 	int			view;
 	float		z_scale;
 	int			colour_arr;
@@ -72,9 +86,12 @@ typedef struct	s_map
 	int			bg_arr;
 	int			bg;
 	int			party;
+	int			party_scale;
 	int			r;
 	int			g;
 	int			b;
+	int			rot;
+	t_floor		tiles[SQUARES];
 }				t_map;
 
 int		fdf_init(t_map *map);
@@ -83,16 +100,21 @@ int		map_valid(int fd);
 t_map	*map_init(int fd, int size);
 void	map_reset(t_map *map);
 
+void	reset_img(t_map *map, int colour);
+
 int		draw_map(t_map *map);
-void	draw_view(t_map *map);
-void	draw_default(t_map *map);
+void	draw_create(t_map *map);
 
 int		fdf_keys(int key, t_map *map);
 
-void	morph(float *x, float *y, float z, int i);
+void	morph_view(float *x, float *y, float z, int i);
+void	morph_rotate(t_coord *p, t_coord center, float angle);
 
+void	party_init(t_map *map);
 void	party_mode(t_map *map);
 void	party_start(t_map *map);
+void	party_create_floor(t_map *map);
+void	party_stripe_floor(t_map *map);
 
 int		die(char *reason);
 char	*die_null(char *reason);

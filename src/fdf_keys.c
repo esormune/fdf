@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 15:52:12 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/13 10:15:53 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/17 13:32:46 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	key_background(t_map *map)
 		RED, PURPLE, BLUE, TURQUOISE, GREEN, YELLOW,
 		ORANGE};
 
+	if (map->party != 0)
+		return ;
 	map->bg_arr++;
 	if (map->bg_arr > 12)
 		map->bg_arr = 0;
@@ -35,8 +37,6 @@ void	key_background(t_map *map)
 
 void	key_projection(t_map *map)
 {
-	int	prjct[5] = {0, 1, 2, 3, 4};
-
 	map->view++;
 	if (map->view > 4)
 		map->view = 0;
@@ -113,6 +113,18 @@ void	key_z_scale(int key, t_map *map)
 }
 
 /*
+** Sets the rotation level.
+*/
+
+void	key_rotate(int key, t_map *map)
+{
+	if (key == 44)
+		map->rot += 5;
+	else
+		map->rot -= 5;
+}
+
+/*
 ** Parses the key pressed into its function.
 */
 
@@ -135,7 +147,7 @@ int		fdf_keys(int key, t_map *map)
 		map_reset(map);
 	else if (key == 112)
 		party_mode(map);
-	if (map->party == 1)
-		party_start(map);
+	else if (key == 44 || key == 46)
+		key_rotate(key, map);
 	return (0);
 }

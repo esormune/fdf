@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:09:59 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/06 14:55:43 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/16 14:44:43 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,6 @@ int					ft_atoi_max(const char *str);
 uintmax_t			ft_uintmax_pow(uintmax_t nb, int pow);
 char				*ft_strjoin_free(char *s1, char *s2);
 float				ft_abs(float a);
+int					ft_rand(intmax_t ptr, int lim);
+int					ft_colour(int r, int g, int b);
 #endif

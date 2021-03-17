@@ -6,7 +6,7 @@
 #    By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/23 16:14:25 by esormune          #+#    #+#              #
-#    Updated: 2021/03/13 11:15:08 by esormune         ###   ########.fr        #
+#    Updated: 2021/03/13 12:05:17 by esormune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_DIR = ./libft/
 MLX_DIR = ./minilibx/
 
 #source files
-SRC_FILES = main.c fdf_init.c fdf_map.c fdf_error.c fdf_draw.c fdf_keys.c \
+SRC_FILES = main.c fdf_init.c fdf_map.c fdf_draw.c fdf_keys.c \
 	fdf_morph.c fdf_party.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -63,7 +63,7 @@ clean:
 	@make -C $(MLX_DIR) clean
 	@echo "Object files deleted."
 
-fclean:
+fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 	@echo "$(NAME) deleted."

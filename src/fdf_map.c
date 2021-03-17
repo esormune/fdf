@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 17:42:04 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/13 11:14:43 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/16 12:36:27 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 
 void	map_reset(t_map *map)
 {
-	map->scale = 10;
+	int	max;
+
+	max = ft_max(map->max_width, map->y_size);
 	map->z_scale = 1;
-	map->zoom = 1;
+	map->zoom = WIN_X / (max + 10);
 	map->view = 0;
 	map->colour = WHITE;
 	map->colour_arr = 0;
@@ -30,16 +32,18 @@ void	map_reset(t_map *map)
 	map->r = 255;
 	map->g = 0;
 	map->b = 0;
-	map->x_start = 0;
-	map->y_start = 0;
+	map->x_start = WIN_HALF - (map->max_width / 2 * map->zoom);
+	map->y_start = WIN_HALF - (map->y_size / 2 * map->zoom);
 	map->z_start = 0;
+	map->rot = 0;
+	map->party_scale = 0;
 }
 
 /*
-** Finds max_x size of the map.
+** Checks max width for x of map.
 */
 
-int		map_xsize(t_map *map)
+int		map_max_width(t_map *map)
 {
 	int		max;
 	int		i;
@@ -191,14 +195,14 @@ static t_coord	**map_read(int fd, int size, t_map *orig)
 t_map			*map_init(int fd, int size)
 {
 	t_map	*map;
-	char	*save;
 	int		i;
 
 	i = 0;
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (NULL);
 	map->coord = map_read(fd, size, map);
+	map->max_width = map_max_width(map);
 	map_reset(map);
-	map->max_x = map_xsize(map);
+	party_init(map);
 	return (map);
 }
