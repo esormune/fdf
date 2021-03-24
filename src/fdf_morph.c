@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:44:18 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/13 16:09:28 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/22 15:19:16 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,18 @@ void	morph_rotate(t_coord *p, t_coord center, float angle)
 	temp_y = p->x * s + p->y * c;
 	p->x = temp_x + center.x;
 	p->y = temp_y + center.y;
+}
+
+/*
+** Scales the points to fit the required zoom.
+*/
+
+void	morph_scale(t_map *map, t_coord *start, t_coord *end)
+{
+	start->x = start->x * map->zoom + map->x_start;
+	start->y = start->y * map->zoom + map->y_start;
+	start->z = start->z * map->zoom + map->z_start;
+	end->x = end->x * map->zoom + map->x_start;
+	end->y = end->y * map->zoom + map->y_start;
+	end->z = end->z * map->zoom + map->z_start;
 }

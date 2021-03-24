@@ -6,7 +6,7 @@
 #    By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/03 11:48:55 by esormune          #+#    #+#              #
-#    Updated: 2021/03/16 14:44:59 by esormune         ###   ########.fr        #
+#    Updated: 2021/03/17 19:07:07 by esormune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 	ft_brounding.c ft_print_array.c ft_putnstr.c ft_strndup.c \
 	ft_implode.c ft_free_array.c ft_is_neg.c ft_putnstr_fd.c \
 	ft_brounding_ld.c ft_atoi_max.c ft_uintmax_pow.c \
-	ft_strjoin_free.c ft_abs.c ft_rand.c ft_colour.c
+	ft_strjoin_free.c ft_abs.c ft_rand.c ft_colour.c ft_avg.c
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

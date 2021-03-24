@@ -6,7 +6,7 @@
 #    By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/23 16:14:25 by esormune          #+#    #+#              #
-#    Updated: 2021/03/13 12:05:17 by esormune         ###   ########.fr        #
+#    Updated: 2021/03/22 17:02:30 by esormune         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ MLX_DIR = ./minilibx/
 
 #source files
 SRC_FILES = main.c fdf_init.c fdf_map.c fdf_draw.c fdf_keys.c \
-	fdf_morph.c fdf_party.c
+	fdf_morph.c fdf_party.c fdf_text.c fdf_colours.c fdf_depth.c \
+	fdf_events.c fdf_reset.c fdf_valid.c fdf_parse.c fdf_floor.c \
+	fdf_square.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 #paths

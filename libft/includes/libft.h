@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:09:59 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/16 14:44:43 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:06:53 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,5 @@ char				*ft_strjoin_free(char *s1, char *s2);
 float				ft_abs(float a);
 int					ft_rand(intmax_t ptr, int lim);
 int					ft_colour(int r, int g, int b);
+int					ft_avg(int x, int y);
 #endif

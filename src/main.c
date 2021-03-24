@@ -6,7 +6,7 @@
 /*   By: esormune <esormune@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 18:36:26 by esormune          #+#    #+#             */
-/*   Updated: 2021/03/09 14:28:30 by esormune         ###   ########.fr       */
+/*   Updated: 2021/03/22 18:34:19 by esormune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ char	*die_null(char *reason)
 	return (NULL);
 }
 
-//add wall wextra werror
+t_coord	**die_struct(char *reason)
+{
+	ft_putendl(reason);
+	return (NULL);
+}
 
 int		main(int argc, char **argv)
 {
@@ -39,16 +43,15 @@ int		main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 		if (fd < 0)
 			return (die("Open error."));
-		if ((y = map_valid(fd)) == 0)
+		if ((y = valid_map(fd)) == 0)
 			return (die("Invalid map."));
 		else
 		{
 			close(fd);
-			fd = open(argv[1], O_RDONLY);
-			if (fd < 0)
+			if (((fd = open(argv[1], O_RDONLY)) < 0))
 				return (die("Open error."));
 			if (!(map = map_init(fd, y)))
-				return (die("Malloc error."));
+				return (die("Error initialising map."));
 			close(fd);
 			fdf_init(map);
 		}
